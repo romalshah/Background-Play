@@ -1,0 +1,30 @@
+// Its a part of the App
+// How to keep music continue playing in Background
+// There might be some bugs in the code
+// If you find any help me inproving my code
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+	{
+	    //  Customization after application is launched
+	    
+	    AVAudioSession *musicSession = [AVAudioSession sharedInstance];
+	    [musicSession setActive:YES error:nil];
+	    
+	    NSError *error = nil;
+	    
+	    BOOL success = [musicSession setCategory:AVAudioSessionCategoryPlayback error:&error];
+	    
+	    if (!success)
+	    {
+	        NSLog(@"Category error %@", error);
+	    }
+	    
+	    success = [musicSession setActive:YES error:&error];
+	    
+	    if (!success)
+	    {
+	        NSLog(@"Active error %@", error);
+	    }
+	    
+	    return YES;
+	}
